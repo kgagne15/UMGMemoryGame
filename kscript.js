@@ -2,7 +2,6 @@ const gameContainer = document.getElementById("game");
 let count = 0; 
 let score = 0; 
 let identifiers = 0; 
-// let lowestScore = 0; 
 const colorPicks = [];
 const divs = []; 
 const winningIDs = [];
@@ -35,8 +34,6 @@ function gameLogic(colorOne, colorTwo, idOne, idTwo) {
         
         
         for (let division of divisions) {
-          // console.log(division, 'division');
-          // console.log(division.dataset.id, 'data set?')
           if (division.dataset.id === idOne || division.dataset.id === idTwo) {
             winningIDs.push(division.dataset.id); 
             division.style.backgroundColor = colorOne;
@@ -57,7 +54,6 @@ function gameLogic(colorOne, colorTwo, idOne, idTwo) {
       score++; 
       colorPicks.pop();
       colorPicks.pop();  
-      // console.log('score: ', score); 
       scoreContainer.classList.add('style'); 
     
       scoreContainer.innerText = 'Score: ' + score; 
@@ -123,14 +119,12 @@ function createDivsForColors(colorArray) {
     // create a new div
     const newDiv = document.createElement("div");
     divs.push(newDiv); 
-    //
-    // newDiv.dataset.id = Math.random() * 10;
-    // console.log(color)
+
     
     for (let div of divs) {
       div.dataset.id = identifiers++; 
     }
-    // console.log(newDiv.dataset.id); 
+ 
     // give it a class attribute for the value we are looping over
     newDiv.classList.add(color);
 
@@ -145,7 +139,7 @@ function createDivsForColors(colorArray) {
 // TODO: Implement this function!
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked
-  // console.log("you just clicked", event.target.classList.value);
+
 
 
   //CHANGES THE COLORS OF THE DIVS BASED ON CLASS
@@ -176,13 +170,12 @@ function handleCardClick(event) {
           colorPicks.push({color: 'green', id: event.target.dataset.id}); 
         }
     } else {
-      // event.target.innerText = 'YOU CAN\'T CLICK HERE'; 
+
       console.log('you can\'t click the same thing twice')
     }
   
     if (colorPicks.length === 2) {
       gameLogic(colorPicks[0].color, colorPicks[1].color, colorPicks[0].id, colorPicks[1].id); 
-      // console.log(colorPicks[0].id, colorPicks[1].id); 
     }
     
    
